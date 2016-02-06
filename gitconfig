@@ -1,3 +1,5 @@
 [user]
 	email = bsawyerwaters@gmail.com
 	name = Ben Waters
+[core]
+	editor = vim
