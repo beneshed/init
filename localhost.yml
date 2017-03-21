@@ -1,0 +1,39 @@
+---
+  - hosts: localhost
+    tasks:
+      - block:
+          - name: Install brew
+            shell: /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+            args:
+              creates: /usr/local/bin/brew
+
+          - name: Install brew packges
+            homebrew:
+              name: "{{item}}"
+              state: present
+            with_items:
+              - zsh
+              - zsh-completions
+              - awscli
+              - byobu
+              - dos2unix
+              - git
+              - go
+              - jq
+              - libffi
+              - python
+              - python3
+              - terraform
+              - tmux
+              - vim
+              - yarn
+        - name: global pip installs
+          pip:
+            name: "{{item}}"
+            state: latest
+          with_items:
+            - boto
+            - boto3
+            - cryptography
+            - ipython[all]
+            - requests
